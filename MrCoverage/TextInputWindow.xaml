@@ -1,0 +1,27 @@
+﻿<Window x:Class="MrCoverage.TextInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MrCoverage"
+        mc:Ignorable="d"
+        FontSize="18"
+        Title="入力" Height="300" Width="400"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBox x:Name="txtInput" Margin="5" TextWrapping="Wrap" AcceptsTab="True" AcceptsReturn="False" VerticalScrollBarVisibility="Auto" KeyDown="txtInput_KeyDown">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return" CommandParameter="{Binding ElementName=txtInput, Path=Text}"/>
+                </TextBox.InputBindings>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TextBlock FontSize="12" HorizontalAlignment="Right" Margin="0,0,5,5">Enterで確定。(Shift or Ctrl)+Enterで改行。</TextBlock>
+        </Grid>
+    </Grid>
+</Window>
