@@ -8,7 +8,6 @@
         xmlns:Text="clr-namespace:System.Text;assembly=System.Text.Encoding.Extensions" x:Class="MrCoverage.MainWindow"
         mc:Ignorable="d"
         WindowState="Maximized"
-        PreviewMouseMove="Window_PreviewMouseMove"
         Title="網羅くん2nd" 
         Height="450" 
         Width="800">
@@ -23,12 +22,15 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0" Margin="10" Background="#FFDEDEDE">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Background="White">
@@ -37,65 +39,14 @@
                     <Button Width="100" Margin="10" Click="Button_Click" Content="追加"/>
                 </StackPanel>
             </Grid>
-            <TextBox x:Name="txtEdit" Grid.Row="1" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <ItemsControl Grid.Row="2" x:Name="lstItems" ItemsSource="{Binding Colmuns}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.Template>
-                    <ControlTemplate>
-                        <ScrollViewer
-                    VerticalScrollBarVisibility="Auto"
-                    HorizontalScrollBarVisibility="Auto">
-                            <StackPanel Orientation="Horizontal" IsItemsHost="True" />
-                        </ScrollViewer>
-                    </ControlTemplate>
-                </ItemsControl.Template>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type local:IterationItemColumn}">
-                        <StackPanel Width="{Binding CurrentWidth}">
-                            <Border BorderThickness="1" BorderBrush="Black">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="3"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" FontSize="20" Text="{Binding Name}" />
-                                    <Button Grid.Column="2" Cursor="SizeWE"
-                                        PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown"
-                                        PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp"/>
-                                </Grid>
-                            </Border>
-                            <DataGrid 
-                                      x:Name="gridIterator"
-                                      ItemsSource="{Binding Items}"
-                                      CanUserResizeColumns="False"
-                                      CanUserResizeRows="False"
-                                      CanUserAddRows="False"
-                                      RowHeight="40"
-                                      HeadersVisibility="None"
-                                      SelectionChanged="Datagrid_SelectionChanged"
-                                      SelectedCellsChanged="DataGrid_SelectedCellsChanged"
-                                      LostFocus="Datagrid_LostFocus"
-                                      KeyDown="Datagrid_KeyDown"
-                                      PreviewKeyDown="DataGrid_PreviewKeyDown"
-                                      SelectedItem="{Binding SelectedItem}"
-                                      AutoGenerateColumns="False">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Text, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </StackPanel>
-
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <TextBox Grid.Row="1" x:Name="txtEdit" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"></TextBox>
+            <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch"/>
+            <local:JaggedGrid Grid.Row="3" x:Name="jgidMain"></local:JaggedGrid>
         </Grid>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2"></Grid>
+        <GridSplitter Grid.Column="3" HorizontalAlignment="Stretch"/>
+        <Grid Grid.Column="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="50"/>

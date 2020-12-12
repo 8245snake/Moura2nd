@@ -7,6 +7,9 @@ using System.Windows.Data;
 
 namespace MrCoverage
 {
+    /// <summary>
+    /// 反復子のコレクションクラス
+    /// </summary>
     public class IterationItemColumn : INotifyPropertyChanged
     {
         private IterationItem _SelectedItem;
