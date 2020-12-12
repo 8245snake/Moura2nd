@@ -33,6 +33,9 @@ namespace MrCoverage
             jgidMain.ItemSet = ItemSet;
             jgidMain.EditorTextBox = txtEdit;
             this.PreviewMouseMove += jgidMain.Window_PreviewMouseMove;
+
+            ItemSet.AddNewColumn();
+            ItemSet.AddNewSequence();
         }
 
 
@@ -54,5 +57,9 @@ namespace MrCoverage
             txtTemplate.Text = txt;
         }
 
+        private void btnCopy_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

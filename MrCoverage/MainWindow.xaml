@@ -35,8 +35,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Background="White">
                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right"  >
-                    <Button Width="100" Margin="10" Click="Button_Click_1" Content=""/>
-                    <Button Width="100" Margin="10" Click="Button_Click" Content="追加"/>
+                    <Button Width="100" Margin="10" Click="Button_Click" Content="新規追加"/>
                 </StackPanel>
             </Grid>
             <TextBox Grid.Row="1" x:Name="txtEdit" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"></TextBox>
@@ -44,13 +43,33 @@
             <local:JaggedGrid Grid.Row="3" x:Name="jgidMain"></local:JaggedGrid>
         </Grid>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
-        <Grid Grid.Column="2"></Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <WrapPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Bottom">
+                <ComboBox x:Name="combIterater" Width="100"></ComboBox>
+                <TextBlock> = </TextBlock>
+                <ComboBox x:Name="combValue" Width="100"></ComboBox>
+                <Button>
+                    <TextBlock>絞り込み</TextBlock>
+                </Button>
+                <Button>
+                    <TextBlock>全て表示</TextBlock>
+                </Button>
+                <Button>
+                    <TextBlock>新規追加</TextBlock>
+                </Button>
+            </WrapPanel>
+            <DataGrid Grid.Row="1" x:Name="gridSequence" AutoGenerateColumns="False"></DataGrid>
+        </Grid>
         <GridSplitter Grid.Column="3" HorizontalAlignment="Stretch"/>
         <Grid Grid.Column="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Margin="10" >
                 <Grid.RowDefinitions>
@@ -65,8 +84,10 @@
             </Grid>
             <Grid Grid.Row="1">
             </Grid>
-            <Grid Grid.Row="2">
-            </Grid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Button Width="100" Margin="10" Click="btnCopy_Click" Content="クリップボード"/>
+                <Button Width="100" Margin="10" Click="Button_Click_1" Content="実行"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
